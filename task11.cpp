@@ -67,7 +67,7 @@ void save_to_file(const std::vector<int>& arr, const std::string& file_name) {
     }
 
     for (auto it = arr.begin(); it != arr.end(); ++it) {
-        std::cout << *it << " ";
+        output_file << *it << " ";
     }
     output_file.close();
     std::cout << "Sorted array saved to file: " << file_name << std::endl;
@@ -76,7 +76,7 @@ void save_to_file(const std::vector<int>& arr, const std::string& file_name) {
 
 int main()
 {
-    std::string file_name = "taskfile.txt";
+    std::string file_name = "taskkfile.txt";
     //read array from file
     std::vector<int> array = read_from_file(file_name);
 
@@ -86,7 +86,7 @@ int main()
     }
    
     std::cout << std::endl;
-    return 0;
+   
     const int size = 2;
     SortingOption arr[size];
 
@@ -97,24 +97,24 @@ int main()
     int choice;
     std::cin >> choice;
 
-    for (int i = 0; i < size; ++i) {
-      if (choice == 1) {
-        arr[i].fptr = bubble;
-      } else arr[i].fptr = selection;
-    }
+    arr[0].e = BUBBLE_SORT;
+    arr[0].fptr = bubble;
+    arr[1].e = SELECTION_SORT;
+    arr[1].fptr = selection;
  
-    std::cout << "Array after srting"  << std::endl;
-   for (int j = 0;j < size; ++j) {
- 	  std::cout << "Enter the " << j <<  "st SortingStrategy " << std::endl;
- 	  arr[j].fptr(array);
-      for (auto it = array.begin(); it != array.end(); ++it) {
-         std::cout << *it << " ";
-       }
+   std::cout << "Array after sorting" << std::endl;
+    for (int j = 0; j < size; ++j) {
+        std::cout << "Enter the " << j << "st SortingStrategy " << std::endl;
+        arr[j].fptr(array);
+        for (auto it = array.begin(); it != array.end(); ++it) {
+            std::cout << *it << " ";
+        }
+        std::cout << std::endl; 
+    }
 
-  }
-   save_to_file(array,file_name);
+   
+    save_to_file(array, file_name);
 
-
-   return 0;
-}
+    return 0;
+} 
 
